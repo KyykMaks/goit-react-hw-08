@@ -1,7 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
-import css from "./LoginForm.module.css";
+import css from "./LoginFormU.module.css";
 
 const UserRegisterSchema = Yup.object().shape({
   email: Yup.string()
