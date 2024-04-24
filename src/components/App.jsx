@@ -8,7 +8,6 @@ import RestrictedRoute from "./RestrictedRoute/RestrictedRoute";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import Layout from "./Layout/Layout";
 
-
 const RegistrationPage = lazy(() => import("../pages/RegistrationPage"));
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const HomePage = lazy(() => import("../pages/HomePage"));
@@ -23,7 +22,7 @@ const App = () => {
 
   return (
     <Routes>
-      <Route  element={<Layout />}>
+      <Route element={<Layout />}>
         <Route path="/" element={<HomePage />} />
         <Route
           path="/register"
