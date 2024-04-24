@@ -2,6 +2,8 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
 import css from "./LoginFormU.module.css";
+import { logIn } from "../../redux/auth/operations";
+import { useDispatch } from "react-redux";
 
 const UserRegisterSchema = Yup.object().shape({
   email: Yup.string()
@@ -12,21 +14,18 @@ const UserRegisterSchema = Yup.object().shape({
     .min(8, "Password must be at least 8 characters!"),
 });
 
-const INITIAL_FORM_DATA = {
-  email: "",
-  password: "",
-};
+const LoginForm = () => {
+  const dispatch = useDispatch();
 
-const LoginForm = ({ onLogin }) => {
   const handleSubmit = (data, formActions) => {
-    onLogin(data);
+    dispatch(logIn(data));
     formActions.resetForm();
   };
 
   return (
     <Formik
       validationSchema={UserRegisterSchema}
-      initialValues={INITIAL_FORM_DATA}
+      initialValues={{ email: "", password: "" }}
       onSubmit={handleSubmit}
     >
       <Form className={css.form}>

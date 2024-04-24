@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectError,
-  selectItems,
+  selectFilteredContacts,
   selectLoading,
 } from "../redux/contacts/selectors";
 import { useEffect } from "react";
@@ -17,9 +17,9 @@ import ErrorMessage from "../components/ErrorMessage/errorMessage";
 
 const Contact = () => {
   const dispatch = useDispatch();
-  const items = useSelector(selectItems);
   const isLoading = useSelector(selectLoading);
   const isError = useSelector(selectError);
+  const selectorFilter = useSelector(selectFilteredContacts)
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -32,17 +32,18 @@ const Contact = () => {
     dispatch(deleteContact(contactId));
   };
 
+
   return (
     <div>
       <Helmet>
         <title>Contacts</title>
       </Helmet>
       <ContactForm onAddContact={onAddContact} />
-      {isError && <Loader />}
-      {isLoading && <ErrorMessage />}
+      {isLoading && <Loader />}
+      {isError && <ErrorMessage />}
       <ul>
-        {items !== null &&
-          items.map((item) => {
+        {selectorFilter !== null &&
+          selectorFilter.map((item) => {
             return (
               <li key={item.id}>
                 <h3>Name: {item.name}</h3>
@@ -66,6 +67,3 @@ const Contact = () => {
 export default Contact;
 
 
-// const arr = [1, 'Hello', {}]
-
-// const [name1, name2, name3] = arr;

@@ -2,6 +2,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
 import css from "./ContactFormU.module.css";
+import { useDispatch } from "react-redux";
 
 const ContactSchema = Yup.object().shape({
   name: Yup.string().required("Name is required!"),
@@ -10,21 +11,18 @@ const ContactSchema = Yup.object().shape({
     .min(6, "Number must be at least 6 characters!"),
 });
 
-const INITIAL_FORM_DATA = {
-  name: "",
-  number: "",
-};
+const ContactForm= () => {
+  const dispatch = useDispatch();
 
-const ContactForm = ({ onAddContact }) => {
   const handleSubmit = (data, formActions) => {
-    onAddContact(data);
+    dispatch(logIn(data));
     formActions.resetForm();
   };
 
   return (
     <Formik
       validationSchema={ContactSchema}
-      initialValues={INITIAL_FORM_DATA}
+      initialValues={{ email: "", password: "" }}
       onSubmit={handleSubmit}
     >
       <Form className={css.form}>
