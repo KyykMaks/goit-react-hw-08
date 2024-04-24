@@ -1,11 +1,11 @@
 /** @format */
 
 import { NavLink } from "react-router-dom";
-import * as css from "../App.css";
+import css from './AuthNav.module.css';
 import clsx from "clsx";
 
 const getNavLinkClassNames = ({ isActive }) =>
-  clsx(css.headerLink, {
+  clsx(css.link, {
     [css.active]: isActive,
   });
 
