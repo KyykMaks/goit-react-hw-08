@@ -1,6 +1,7 @@
 body {
     font-family: sans-serif;
     line-height: 1.5;
+    background-color: bisque;
   }
   
   h1,
@@ -24,3 +25,4 @@ body {
     display: block;
     max-width: 100%;
   }
+
