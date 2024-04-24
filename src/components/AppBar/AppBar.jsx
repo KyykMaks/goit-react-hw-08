@@ -1,4 +1,4 @@
-import { useAuth } from "../hooks/useSel"
+import { useAuth } from "../hooks/useAuth"
 import * as css from "../App.css";
 import Navigation from "../Navigation/Navigation";
 import AuthNav from "../AuthNav/AuthNav";

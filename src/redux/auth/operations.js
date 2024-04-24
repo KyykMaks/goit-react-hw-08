@@ -17,9 +17,9 @@ const clearToken = () => {
 
 export const register = createAsyncThunk(
   "auth/register",
-  async (credentials, thunkAPI) => {
+  async (formData, thunkAPI) => {
     try {
-      const response = await instance.post("/auth/signup", credentials);
+      const response = await instance.post("/users/signup", formData);
       setToken(response.data.token);
       return response.data;
     } catch (error) {
@@ -30,9 +30,9 @@ export const register = createAsyncThunk(
 
 export const logIn = createAsyncThunk(
   "auth/login",
-  async (credentials, thunkAPI) => {
+  async (formData, thunkAPI) => {
     try {
-      const response = await instance.post("/auth/login", credentials);
+      const response = await instance.post("/users/login", formData);
       setToken(response.data.token);
       return response.data;
     } catch (error) {
@@ -41,39 +41,32 @@ export const logIn = createAsyncThunk(
   }
 );
 
-export const logOut = createAsyncThunk(
-  "auth/logout",
+export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+  try {
+    const response = await instance.post("/users/logout");
+    clearToken();
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+export const refreshUser = createAsyncThunk(
+  "auth/refresh",
   async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+
+    if (token === null) {
+      return thunkAPI.rejectWithValue("Error getting");
+    }
+
     try {
-      const response = await instance.post("/auth/logout");
-      clearToken();
+      setToken(token)
+      const response = await instance.get("/users/current");
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  });
-
-  export const refreshUser = createAsyncThunk(
-    "auth/refresh",
-    async (_, thunkAPI) => {
-        const state = thunkAPI.getState();
-        const token = state.auth.token;
-    try {
-        const response = await instance.post("/auth/refresh", null, {
-        });
-        setToken(token);
-        return response.data;
-    } catch (error) {
-    return thunkAPI.rejectWithValue(error.message)
-    }
-},
-    {
-        condition: (_, thunkAPI) => {
-            const state = thunkAPI.getState();
-            const token = state.auth.token;
-            if(!token) return false;
-            return true;
-        }
-    }
-
-  )
+  }
+);

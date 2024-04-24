@@ -1,7 +1,7 @@
 /** @format */
 
 import { useDispatch } from "react-redux";
-import { useAuth } from "../hooks/useSel";
+import { useAuth } from "../hooks/useAuth";
 import css from "./UserMenu.module.css";
 import { logOut } from "../../redux/auth/operations";
 

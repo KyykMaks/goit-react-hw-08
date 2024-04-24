@@ -11,7 +11,7 @@ import {
   fetchContacts,
 } from "../redux/contacts/operations";
 import { Helmet } from "react-helmet-async";
-import ContactForm from "../components/ContactForm/contactForm";
+import ContactForm from "../components/ContactForm/ContactForm";
 import Loader from "../components/Loader/Loader";
 import ErrorMessage from "../components/ErrorMessage/errorMessage";
 
@@ -64,3 +64,4 @@ const Contact = () => {
 
 
 export default Contact;
+
