@@ -11,14 +11,14 @@ const getNavLinkClassNames = ({ isActive }) =>
   });
 
 const Navigation = () => {
-  const { isSelectorsLog } = useAuth();
+  const { isLoggedIn } = useAuth();
 
   return (
     <nav>
       <NavLink className={getNavLinkClassNames} to="/">
         Home
       </NavLink>
-      {isSelectorsLog && (
+      {isLoggedIn && (
         <NavLink className={getNavLinkClassNames} to="/tasks">
           Contacts
         </NavLink>

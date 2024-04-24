@@ -65,3 +65,7 @@ const Contact = () => {
 
 export default Contact;
 
+
+// const arr = [1, 'Hello', {}]
+
+// const [name1, name2, name3] = arr;
