@@ -7,3 +7,17 @@
   .username {
     font-weight: 700;
   }
+
+  .button {
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+
+  }
