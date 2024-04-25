@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import { IoPersonAddSharp } from "react-icons/io5";
 
 import css from "../RegistrationForm/Registration.module.css";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/auth/operations";
 
 
 const UserRegisterSchema = Yup.object().shape({
@@ -19,22 +21,18 @@ const UserRegisterSchema = Yup.object().shape({
     .min(8, "Password must be at least 8 characters!"),
 });
 
-const INITIAL_FORM_DATA = {
-  name: "",
-  email: "",
-  password: "",
-};
+const RegisterForm= () => {
+  const dispatch = useDispatch();
 
-const RegisterForm = ({ onRegister }) => {
   const handleSubmit = (data, formActions) => {
-    onRegister(data);
+    dispatch(register(data));
     formActions.resetForm();
   };
 
   return (
     <Formik
       validationSchema={UserRegisterSchema}
-      initialValues={INITIAL_FORM_DATA}
+      initialValues={{ name: "", email: "", password: "" }}
       onSubmit={handleSubmit}
     >
       <Form className={css.form}>

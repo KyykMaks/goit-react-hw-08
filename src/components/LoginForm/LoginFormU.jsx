@@ -15,6 +15,10 @@ const UserRegisterSchema = Yup.object().shape({
 });
 
 const LoginForm = () => {
+
+
+
+  
   const dispatch = useDispatch();
 
   const handleSubmit = (data, formActions) => {
@@ -66,7 +70,7 @@ const LoginForm = () => {
           title="Click to register user"
           aria-label="Add new mailbox"
         >
-          Sign In 😜
+          Sign In
         </button>
       </Form>
     </Formik>

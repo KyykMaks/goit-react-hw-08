@@ -1,8 +1,8 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-
 import css from "./ContactFormU.module.css";
 import { useDispatch } from "react-redux";
+import { addContact } from "../../redux/contacts/operations";
 
 const ContactSchema = Yup.object().shape({
   name: Yup.string().required("Name is required!"),
@@ -15,7 +15,7 @@ const ContactForm= () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (data, formActions) => {
-    dispatch(logIn(data));
+    dispatch(addContact(data));
     formActions.resetForm();
   };
 
@@ -59,7 +59,7 @@ const ContactForm= () => {
           title="Click to create new contact"
           aria-label="Add new contact"
         >
-          Add new contact 🤷‍♂️
+          Add new contact 
         </button>
       </Form>
     </Formik>
